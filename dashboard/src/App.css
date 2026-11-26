@@ -1,0 +1,983 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #f5f5f5;
+    color: #111111;
+}
+
+
+/* =========================
+   Login
+   ========================= */
+
+.login-page {
+    min-height: 100vh;
+
+    background: #f5f5f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+.login-container {
+    width: 900px;
+    min-height: 560px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.login-branding {
+    background: #111111;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+}
+
+.brand-content {
+    max-width: 320px;
+}
+
+.brand-content h1 {
+    margin: 0 0 18px;
+
+    color: #ffffff;
+
+    font-size: 38px;
+    font-weight: 600;
+
+    letter-spacing: -1px;
+}
+
+.brand-content p {
+    margin: 0;
+
+    color: #b5b5b5;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.login-form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 330px;
+}
+
+.login-form-container h2 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.login-subtitle {
+    margin: 10px 0 30px;
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333333;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+    color: #111111;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #999999;
+}
+
+.form-group input:focus {
+    border-color: #111111;
+
+    box-shadow:
+        0 0 0 2px rgba(17, 17, 17, 0.04);
+}
+
+.login-error {
+    margin-bottom: 18px;
+
+    padding: 11px 12px;
+
+    border-radius: 7px;
+
+    background: #fdf0f0;
+    color: #b42318;
+
+    border: 1px solid #f3c7c7;
+
+    font-size: 13px;
+}
+
+.register-success {
+    margin-bottom: 18px;
+
+    padding: 11px 12px;
+
+    border-radius: 7px;
+
+    background: #f0f9f1;
+    color: #2f7d32;
+
+    border: 1px solid #cce7ce;
+
+    font-size: 13px;
+}
+
+.login-form-container form > button {
+    width: 100%;
+    height: 46px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #111111;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.login-form-container form > button:hover {
+    background: #2b2b2b;
+}
+
+.login-form-container form > button:active {
+    transform: translateY(1px);
+}
+
+.login-form-container form > button:disabled {
+    background: #888888;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   Register / Login Switch
+   ========================= */
+
+.register-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 22px;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+.text-button {
+    width: auto !important;
+    height: auto !important;
+
+    padding: 0 !important;
+
+    border: none !important;
+
+    background: transparent !important;
+
+    color: #111111 !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer;
+
+    transform: none !important;
+}
+
+.text-button:hover {
+    color: #555555 !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================
+   Main Dashboard
+   ========================= */
+
+.app {
+    min-height: 100vh;
+
+    background: #f5f5f5;
+}
+
+
+/* =========================
+   Header
+   ========================= */
+
+.navbar {
+    min-height: 86px;
+
+    padding: 0 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.navbar h1 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 25px;
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+}
+
+.navbar p {
+    margin: 5px 0 0;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    color: #555555;
+
+    font-size: 13px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #111111;
+    color: #ffffff;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.logout-button:hover {
+    background: #2b2b2b;
+}
+
+.logout-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================
+   Dashboard
+   ========================= */
+
+.dashboard {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 40px 30px 60px;
+}
+
+
+/* =========================
+   Sensor Overview
+   ========================= */
+
+.welcome-section {
+    margin-bottom: 35px;
+}
+
+.welcome-section h2 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.welcome-section p {
+    margin: 5px 0 0;
+
+    color: #888888;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Error
+   ========================= */
+
+.dashboard-error {
+    width: 100%;
+
+    margin: 0 auto 25px;
+
+    padding: 12px 15px;
+
+    background: #fdf0f0;
+
+    color: #b42318;
+
+    border: 1px solid #f3c7c7;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Loading
+   ========================= */
+
+.loading-message {
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    color: #666666;
+
+    background: #ffffff;
+
+    border: 1px solid #e6e6e6;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Sensor Grid
+   ========================= */
+
+.sensor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   Sensor Card
+   ========================= */
+
+.sensor-card {
+    min-height: 292px;
+
+    background: #ffffff;
+
+    border: 1px solid #e6e6e6;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   Sensor Header
+   ========================= */
+
+.sensor-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.sensor-header h3 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 24px;
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================
+   Sensor Label
+   ========================= */
+
+.sensor-label {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #999999;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================
+   Sensor Status
+   ========================= */
+
+.status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+}
+
+.status::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+}
+
+.status.online {
+    color: #2f7d32;
+}
+
+.status.online::before {
+    background: #2f9e44;
+}
+
+.status.offline {
+    color: #c62828;
+}
+
+.status.offline::before {
+    background: #d32f2f;
+}
+
+
+/* =========================
+   Sensor Values
+   ========================= */
+
+.sensor-values {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    padding: 25px 0;
+}
+
+.sensor-values > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.sensor-values span {
+    color: #888888;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+.sensor-values strong {
+    color: #111111;
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================
+   Last Reading
+   ========================= */
+
+.last-reading {
+    padding-top: 15px;
+
+    margin: 0;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #999999;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   Alerts Section
+   ========================= */
+
+.alerts-section {
+    background: #ffffff;
+
+    border: 1px solid #e6e6e6;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   Alerts Header
+   ========================= */
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.section-header p {
+    margin: 5px 0 0;
+
+    color: #888888;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Active Alert Count
+   ========================= */
+
+.alert-count {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 62px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #fff3e0;
+
+    color: #b45309;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   Alerts List
+   IMPORTANT:
+   App.jsx uses .alerts-list
+   ========================= */
+
+.alerts-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   Alert Item
+   IMPORTANT:
+   App.jsx uses .alert-item
+   ========================= */
+
+.alert-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 74px;
+
+    padding: 15px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 8px;
+
+    background: #fafafa;
+}
+
+
+/* =========================
+   Alert Icon
+   App.jsx uses .alert-icon
+   ========================= */
+
+.alert-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0f0;
+
+    color: #c62828;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   Alert Content
+   App.jsx uses .alert-content
+   ========================= */
+
+.alert-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* =========================
+   Alert Title
+   App.jsx uses .alert-title
+   ========================= */
+
+.alert-title {
+    color: #222222;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   Alert Details
+   App.jsx uses .alert-details
+   ========================= */
+
+.alert-details {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 5px;
+
+    color: #999999;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   Alert Status
+   ========================= */
+
+.alert-status {
+    padding: 5px 8px;
+
+    border-radius: 5px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+.alert-status.active {
+    background: #fff0f0;
+
+    color: #c62828;
+}
+
+.alert-status.resolved {
+    background: #f0f0f0;
+
+    color: #666666;
+}
+
+
+/* =========================
+   No Alerts
+   App.jsx uses .no-alerts
+   ========================= */
+
+.no-alerts {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #888888;
+
+    font-size: 13px;
+
+    border: 1px dashed #dddddd;
+
+    border-radius: 8px;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .login-container {
+        width: 92%;
+
+        grid-template-columns: 1fr;
+    }
+
+    .login-branding {
+        min-height: 220px;
+    }
+
+    .login-form-section {
+        padding: 35px 25px;
+    }
+
+    .navbar {
+        padding: 20px 25px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .user-section {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    .dashboard {
+        padding: 30px 20px 50px;
+    }
+
+    .sensor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sensor-header {
+        gap: 15px;
+    }
+
+    .alert-item {
+        align-items: flex-start;
+    }
+
+    .alert-status {
+        display: none;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 15px;
+    }
+
+    .login-container {
+        width: 100%;
+
+        border-radius: 12px;
+    }
+
+    .login-branding {
+        padding: 35px 25px;
+
+        min-height: 190px;
+    }
+
+    .brand-content h1 {
+        font-size: 32px;
+    }
+
+    .login-form-section {
+        padding: 35px 25px;
+    }
+
+    .navbar h1 {
+        font-size: 21px;
+    }
+
+    .navbar p {
+        font-size: 12px;
+    }
+
+    .sensor-values {
+        grid-template-columns: 1fr;
+    }
+
+    .sensor-card {
+        padding: 20px;
+    }
+
+    .alerts-section {
+        padding: 20px;
+    }
+
+    .alert-item {
+        gap: 10px;
+    }
+
+    .alert-details {
+        flex-wrap: wrap;
+    }
+}
