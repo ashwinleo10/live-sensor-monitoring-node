@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://live-sensor-monitoring-node.onrender.com";
 
 const apiRequest = async (endpoint, options = {}) => {
     const response = await fetch(

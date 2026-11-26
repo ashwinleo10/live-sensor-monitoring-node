@@ -1,7 +1,7 @@
 const axios = require("axios");
 const crypto = require("crypto");
 
-const BACKEND_URL = "http://localhost:8080/readings";
+const BACKEND_URL = "https://live-sensor-monitoring-node.onrender.com/readings";
 
 const sensors = [
     {
