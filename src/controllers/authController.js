@@ -1,5 +1,7 @@
 const authService = require("../services/authService");
 const tokenBlacklistService = require("../services/tokenBlacklistService");
+const sessionService = require("../services/sessionService");
+const simulatorManager = require("../services/simulatorManager");
 
 const register = async (req, res) => {
     try {
@@ -19,7 +21,10 @@ const register = async (req, res) => {
             });
         }
 
-        const user = await authService.registerUser(email, password);
+        const user = await authService.registerUser(
+            email,
+            password
+        );
 
         return res.status(201).json({
             message: "User registered successfully",
@@ -27,7 +32,10 @@ const register = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Registration error:", error.message);
+        console.error(
+            "Registration error:",
+            error.message
+        );
 
         if (error.statusCode) {
             return res.status(error.statusCode).json({
@@ -52,7 +60,30 @@ const login = async (req, res) => {
             });
         }
 
-        const result = await authService.loginUser(email, password);
+        const result = await authService.loginUser(
+            email,
+            password
+        );
+
+        // Create active session for this login
+        await sessionService.createSession(
+            result.user.id,
+            result.token
+        );
+
+        // Check how many users are currently active
+        const activeSessionCount =
+            await sessionService.getActiveSessionCount();
+
+        console.log(
+            `Active sessions after login: ${activeSessionCount}`
+        );
+
+        // Start one shared simulator when
+        // the first active user logs in
+        if (activeSessionCount === 1) {
+            simulatorManager.startSimulator();
+        }
 
         return res.status(200).json({
             message: "Login successful",
@@ -61,7 +92,10 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Login error:", error.message);
+        console.error(
+            "Login error:",
+            error.message
+        );
 
         if (error.statusCode) {
             return res.status(error.statusCode).json({
@@ -79,14 +113,39 @@ const logout = async (req, res) => {
     try {
         const token = req.token;
 
-        tokenBlacklistService.blacklistToken(token);
+        // Blacklist JWT
+        tokenBlacklistService.blacklistToken(
+            token
+        );
+
+        // Remove this user's active session
+        await sessionService.removeSession(
+            token
+        );
+
+        // Check remaining active sessions
+        const activeSessionCount =
+            await sessionService.getActiveSessionCount();
+
+        console.log(
+            `Active sessions after logout: ${activeSessionCount}`
+        );
+
+        // Stop simulator only when
+        // no active users remain
+        if (activeSessionCount === 0) {
+            simulatorManager.stopSimulator();
+        }
 
         return res.status(200).json({
             message: "Logout successful"
         });
 
     } catch (error) {
-        console.error("Logout error:", error.message);
+        console.error(
+            "Logout error:",
+            error.message
+        );
 
         return res.status(500).json({
             message: "Logout failed"

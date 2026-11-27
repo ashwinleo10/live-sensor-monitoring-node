@@ -1,7 +1,10 @@
 const axios = require("axios");
 const crypto = require("crypto");
+require("dotenv").config();
 
-const BACKEND_URL = "https://live-sensor-monitoring-node.onrender.com/readings";
+const BACKEND_URL =
+    process.env.BACKEND_URL ||
+    "https://live-sensor-monitoring-node.onrender.com/readings";
 
 const sensors = [
     {
@@ -15,11 +18,15 @@ const sensors = [
 ];
 
 const generateTemperature = () => {
-    return Number((20 + Math.random() * 20).toFixed(2));
+    return Number(
+        (20 + Math.random() * 20).toFixed(2)
+    );
 };
 
 const generateHumidity = () => {
-    return Number((30 + Math.random() * 50).toFixed(2));
+    return Number(
+        (30 + Math.random() * 50).toFixed(2)
+    );
 };
 
 const generateReadingId = () => {
@@ -31,6 +38,7 @@ const sendReading = async (sensor) => {
         console.log(
             `[${sensor.sensor_id}] Disconnected - reading not sent`
         );
+
         return;
     }
 
@@ -56,11 +64,13 @@ const sendReading = async (sensor) => {
         );
 
     } catch (error) {
+
         if (error.response) {
             console.error(
                 `[${sensor.sensor_id}] Backend rejected reading:`,
                 error.response.data
             );
+
         } else {
             console.error(
                 `[${sensor.sensor_id}] Backend unavailable:`,
@@ -77,11 +87,13 @@ const sendReadings = async () => {
 };
 
 const startTemporaryDisconnection = () => {
+
     const s2 = sensors.find(
         (sensor) => sensor.sensor_id === "S2"
     );
 
     setInterval(() => {
+
         s2.connected = false;
 
         console.log("");
@@ -91,6 +103,7 @@ const startTemporaryDisconnection = () => {
         console.log("======================================");
 
         setTimeout(() => {
+
             s2.connected = true;
 
             console.log("");
@@ -98,17 +111,26 @@ const startTemporaryDisconnection = () => {
             console.log("[S2] RECONNECTED");
             console.log("[S2] Readings will resume");
             console.log("======================================");
+
         }, 12000);
 
     }, 30000);
 };
 
 const startSimulator = () => {
+
     console.log("======================================");
     console.log("Live Sensor Simulator Started");
     console.log(`Backend: ${BACKEND_URL}`);
     console.log("Interval: 2 seconds");
     console.log("Sensors: S1, S2");
+
+    if (process.env.SIMULATOR_CONTROLLED === "true") {
+        console.log("Mode: BACKEND CONTROLLED");
+    } else {
+        console.log("Mode: STANDALONE");
+    }
+
     console.log("======================================");
 
     sendReadings();

@@ -9,7 +9,9 @@ const sensorRoutes = require("./src/routes/sensorRoutes");
 const alertRoutes = require("./src/routes/alertRoutes");
 
 const authenticateToken = require("./src/middleware/authMiddleware");
+
 const monitorService = require("./src/services/monitorService");
+const sessionMonitorService = require("./src/services/sessionMonitorService");
 
 const app = express();
 
@@ -33,7 +35,8 @@ app.use("/alerts", alertRoutes);
 
 app.get("/", (req, res) => {
     res.json({
-        message: "Live Sensor Monitoring Node.js Backend is running"
+        message:
+            "Live Sensor Monitoring Node.js Backend is running"
     });
 });
 
@@ -44,18 +47,22 @@ app.get("/db-test", async (req, res) => {
         );
 
         res.json({
-            message: "MySQL connection successful",
-            result: rows[0].result
+            message:
+                "MySQL connection successful",
+            result:
+                rows[0].result
         });
 
     } catch (error) {
+
         console.error(
             "Database connection error:",
             error.message
         );
 
         res.status(500).json({
-            message: "MySQL connection failed"
+            message:
+                "MySQL connection failed"
         });
     }
 });
@@ -64,17 +71,30 @@ app.get(
     "/auth-test",
     authenticateToken,
     (req, res) => {
+
         res.json({
-            message: "JWT authentication successful",
-            user: req.user
+            message:
+                "JWT authentication successful",
+
+            user:
+                req.user
         });
     }
 );
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(
-        `Server running on port ${PORT}`
-    );
+app.listen(
+    PORT,
+    "0.0.0.0",
+    () => {
 
-    monitorService.startSensorMonitor();
-});
+        console.log(
+            `Server running on port ${PORT}`
+        );
+
+        // Existing sensor offline/online monitor
+        monitorService.startSensorMonitor();
+
+        // Start active-session monitor
+        sessionMonitorService.startSessionMonitor();
+    }
+);
